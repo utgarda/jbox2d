@@ -100,40 +100,40 @@ public class Body {
 
 
   public Body(final BodyDef bd, World world) {
-    assert (bd.position.isValid());
-    assert (bd.linearVelocity.isValid());
-    assert (bd.gravityScale >= 0.0f);
-    assert (bd.angularDamping >= 0.0f);
-    assert (bd.linearDamping >= 0.0f);
+    assert (bd.position().isValid());
+    assert (bd.linearVelocity().isValid());
+    assert (bd.gravityScale() >= 0.0f);
+    assert (bd.angularDamping() >= 0.0f);
+    assert (bd.linearDamping() >= 0.0f);
 
     m_flags = 0;
 
-    if (bd.bullet) {
+    if (bd.bullet()) {
       m_flags |= e_bulletFlag;
     }
-    if (bd.fixedRotation) {
+    if (bd.fixedRotation()) {
       m_flags |= e_fixedRotationFlag;
     }
-    if (bd.allowSleep) {
+    if (bd.allowSleep()) {
       m_flags |= e_autoSleepFlag;
     }
-    if (bd.awake) {
+    if (bd.awake()) {
       m_flags |= e_awakeFlag;
     }
-    if (bd.active) {
+    if (bd.active()) {
       m_flags |= e_activeFlag;
     }
 
     m_world = world;
 
-    m_xf.p.set(bd.position);
-    m_xf.q.set(bd.angle);
+    m_xf.p.set(bd.position());
+    m_xf.q.set(bd.angle());
 
     m_sweep.localCenter.setZero();
     m_sweep.c0.set(m_xf.p);
     m_sweep.c.set(m_xf.p);
-    m_sweep.a0 = bd.angle;
-    m_sweep.a = bd.angle;
+    m_sweep.a0 = bd.angle();
+    m_sweep.a = bd.angle();
     m_sweep.alpha0 = 0.0f;
 
     m_jointList = null;
@@ -141,19 +141,19 @@ public class Body {
     m_prev = null;
     m_next = null;
 
-    m_linearVelocity.set(bd.linearVelocity);
-    m_angularVelocity = bd.angularVelocity;
+    m_linearVelocity.set(bd.linearVelocity());
+    m_angularVelocity = bd.angularVelocity();
 
-    m_linearDamping = bd.linearDamping;
-    m_angularDamping = bd.angularDamping;
-    m_gravityScale = bd.gravityScale;
+    m_linearDamping = bd.linearDamping();
+    m_angularDamping = bd.angularDamping();
+    m_gravityScale = bd.gravityScale();
 
     m_force.setZero();
     m_torque = 0.0f;
 
     m_sleepTime = 0.0f;
 
-    m_type = bd.type;
+    m_type = bd.bodyType();
 
     if (m_type == BodyType.DYNAMIC) {
       m_mass = 1f;
@@ -166,7 +166,7 @@ public class Body {
     m_I = 0.0f;
     m_invI = 0.0f;
 
-    m_userData = bd.userData;
+    m_userData = bd.userData();
 
     m_fixtureList = null;
     m_fixtureCount = 0;
