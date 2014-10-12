@@ -220,7 +220,7 @@ public class Collision {
     float distSqr = dx * dx + dy * dy;
     // end inline
 
-    final float radius = circle1.m_radius + circle2.m_radius;
+    final float radius = circle1.radius() + circle2.radius();
     if (distSqr > radius * radius) {
       return;
     }
@@ -271,7 +271,7 @@ public class Collision {
     // Find the min separating edge.
     int normalIndex = 0;
     float separation = -Float.MAX_VALUE;
-    final float radius = polygon.m_radius + circle.m_radius;
+    final float radius = polygon.radius() + circle.radius();
     final int vertexCount = polygon.m_count;
     float s;
     final Vec2[] vertices = polygon.m_vertices;
@@ -578,7 +578,7 @@ public class Collision {
     // The normal points from 1 to 2
 
     manifold.pointCount = 0;
-    float totalRadius = polyA.m_radius + polyB.m_radius;
+    float totalRadius = polyA.radius() + polyB.radius();
 
     findMaxSeparation(results1, polyA, xfA, polyB, xfB);
     if (results1.separation > totalRadius) {
@@ -738,7 +738,7 @@ public class Collision {
     float u = Vec2.dot(e, temp.set(B).subLocal(Q));
     float v = Vec2.dot(e, temp.set(Q).subLocal(A));
 
-    float radius = edgeA.m_radius + circleB.m_radius;
+    float radius = edgeA.radius() + circleB.radius();
 
     // ContactFeature cf;
     cf.indexB = 0;

@@ -72,19 +72,17 @@ public class PolygonShape extends Shape {
   private Transform poolt1 = new Transform();
 
   public PolygonShape() {
-    super(ShapeType.POLYGON);
-
-    m_count = 0;
-    m_vertices = new Vec2[Settings.maxPolygonVertices];
-    for (int i = 0; i < m_vertices.length; i++) {
-      m_vertices[i] = new Vec2();
-    }
-    m_normals = new Vec2[Settings.maxPolygonVertices];
-    for (int i = 0; i < m_normals.length; i++) {
-      m_normals[i] = new Vec2();
-    }
-    setRadius(Settings.polygonRadius);
-    m_centroid.setZero();
+    super(ShapeType.POLYGON, Settings.polygonRadius);
+      m_count = 0;
+      m_vertices = new Vec2[Settings.maxPolygonVertices];
+      for (int i = 0; i < m_vertices.length; i++) {
+          m_vertices[i] = new Vec2();
+      }
+      m_normals = new Vec2[Settings.maxPolygonVertices];
+      for (int i = 0; i < m_normals.length; i++) {
+          m_normals[i] = new Vec2();
+      }
+      m_centroid.setZero();
   }
 
   public final Shape clone() {
@@ -347,10 +345,10 @@ public class PolygonShape extends Shape {
       upper.y = upper.y > vy ? upper.y : vy;
     }
 
-    lower.x -= m_radius;
-    lower.y -= m_radius;
-    upper.x += m_radius;
-    upper.y += m_radius;
+    lower.x -= radius();
+    lower.y -= radius();
+    upper.x += radius();
+    upper.y += radius();
   }
 
   /**

@@ -23,11 +23,7 @@
  ******************************************************************************/
 package org.jbox2d.collision;
 
-import org.jbox2d.collision.shapes.ChainShape;
-import org.jbox2d.collision.shapes.CircleShape;
-import org.jbox2d.collision.shapes.EdgeShape;
-import org.jbox2d.collision.shapes.PolygonShape;
-import org.jbox2d.collision.shapes.Shape;
+import org.jbox2d.collision.shapes.*;
 import org.jbox2d.common.MathUtils;
 import org.jbox2d.common.Rot;
 import org.jbox2d.common.Settings;
@@ -499,13 +495,13 @@ public class Distance {
           final CircleShape circle = (CircleShape) shape;
           m_vertices[0].set(circle.m_p);
           m_count = 1;
-          m_radius = circle.m_radius;
+          m_radius = circle.radius();
 
           break;
         case POLYGON:
           final PolygonShape poly = (PolygonShape) shape;
           m_count = poly.m_count;
-          m_radius = poly.m_radius;
+          m_radius = poly.radius();
           for (int i = 0; i < m_count; i++) {
             m_vertices[i].set(poly.m_vertices[i]);
           }
@@ -524,14 +520,14 @@ public class Distance {
           m_vertices[0].set(m_buffer[0]);
           m_vertices[1].set(m_buffer[1]);
           m_count = 2;
-          m_radius = chain.m_radius;
+          m_radius = chain.radius();
           break;
         case EDGE:
           EdgeShape edge = (EdgeShape) shape;
           m_vertices[0].set(edge.m_vertex1);
           m_vertices[1].set(edge.m_vertex2);
           m_count = 2;
-          m_radius = edge.m_radius;
+          m_radius = edge.radius();
           break;
         default:
           assert (false);

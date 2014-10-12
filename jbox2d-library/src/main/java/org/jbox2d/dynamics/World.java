@@ -1575,7 +1575,7 @@ public class World {
 
         // Vec2 center = Mul(xf, circle.m_p);
         Transform.mulToOutUnsafe(xf, circle.m_p, center);
-        float radius = circle.m_radius;
+        float radius = circle.radius();
         xf.q.getXAxis(axis);
 
         if (fixture.getUserData() != null && fixture.getUserData().equals(LIQUID_INT)) {
